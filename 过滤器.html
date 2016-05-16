@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div ms-controller="test">
+    <div>{{ cont|html }}</div>
+    <div>{{ word1|uppercase }}</div>
+    <div>{{ word2|lowercase }}</div>
+    <div>{{ strings|truncate(6,'...') }}</div>
+    <div>{{ variable|camelize }}</div>
+    <div>{{ string2|escape }}</div>
+    <div>{{ money|currency('$') }}</div>
+    <div>{{ "USD"|parseSymbol('USD') }}</div>
+    <div>{{ num|number(3) }}</div>
+    <div>{{ num|number(2,'.') }}</div>
+    <div>{{ num|number(2,'.',',') }}</div>
+    <br/>
+    <div>{{ new Date|date("yyyy MM dd HH:mm:ss a") }}</div>
+    <div>{{ "2011/07/08"|date("yyyy MM dd HH:mm:ss" }}</div>
+    <div>{{ "2011-01-04"|date('EEEE MMM dd yyyy') }}</div>
+    <div>{{ "01-01-1999"|date('yy/MM/dd' }}</div>
+    <div>{{ 1241234235235|date("yyyy/MM/dd H:m:s") }}</div>
+    <div>{{ 1241234235235|date("yyyy年MM月dd日 H:m:s") }}</div>
+    <div>{{  }}</div>
+    <div>{{  }}</div>
+    <div>{{  }}</div>
+
+</div>
+
+<script src="js/avalon.js"></script>
+<script>
+    //自定义过滤器
+    avalon.filters.parseSymbol = function(str){
+      return {
+          '元':'元',
+          'USD':'美元'
+      }[str];
+    };
+    avalon.ready(function(){
+        avalon.define({
+            $id: 'test',
+            cont: '<b>hello avalon</b>',
+            word1: 'avalon learning 大写化',
+            word2: 'Felix LU 小写化',
+            strings: '对长字符串进行截短',
+            string2: '<span>对类似于html格式的字符串进行转义</span>',
+            variable: 'webkit-box-flex 驼峰化处理',
+            money: 123124.00,
+            num: 1243243.4364564,
+            custom: '<i>这是一段自定义的字符串 This is a custom strings</i>'
+        });
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

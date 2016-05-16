@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+</head>
+<body ms-controller="test">
+<div style="width:100px; height:100px;" ms-css-background="background"></div>
+
+<select ms-duplex="background">
+    <option value="red">红</option>
+    <option value="yellow">黄</option>
+    <option value="green">绿</option>
+</select>
+
+<script src="js/avalon.js"></script>
+<script>
+    avalon.ready(function(){
+        var model = avalon.define({
+            $id: 'test',
+            background: 'red'
+        });
+        model.$watch('background',function(v){
+            model.background = v;
+        });
+        avalon.scan();
+    });
+
+</script>
+</body>
+</html>

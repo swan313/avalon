@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div div{width:260px;height:100px;}
+        div.d1{background:red;}
+        div.d2{background:green;}
+        div.d3{background:blue;}
+    </style>
+</head>
+<body ms-controller="test">
+<div ms-visible="isShowBox">
+    <button ms-click="toggle(1)">色块【red】</button>
+    <button ms-click="toggle(2)">色块【green】</button>
+    <button ms-click="toggle(3)">色块【blue】</button>
+    <div class="d1" ms-visible="currentIndex===1"></div>
+    <div class="d2" ms-visible="currentIndex===2"></div>
+    <div class="d3" ms-visible="currentIndex===3"></div>
+</div>
+
+
+<script src="js/avalon.js"></script>
+<script>
+    //ms-visible的效果类于jquery的toggle，如果它后面跟着的表达式为真值时则显示它所在的元素，为假值时则隐藏
+
+    avalon.ready(function(){
+        var vm = avalon.define({
+            $id: 'test',
+            currentIndex: 1,
+            isShowBox: true,
+            toggle: function(index){
+                vm.currentIndex = index;
+            }
+        });
+
+        //定义3秒后隐藏
+        /*setTimeout(function(){
+            vm.isShowBox = false;
+        },3000);*/
+
+
+        avalon.scan();
+    });
+
+</script>
+</body>
+</html>

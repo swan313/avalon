@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div ms-controller="test">
+    <div ms-text="content"></div>
+    <div ms-html="content"></div>
+    <div>{{ content | html }}</div>
+
+    <input type="text" ms-attr-value="{{ text + '!!!'}}"/>
+
+</div>
+
+<script src="js/avalon.js"></script>
+<script>
+    avalon.ready(function(){
+        avalon.define({
+            $id: 'test',
+            content: '<b>hello avalon</b>',
+            text: '111'
+        });
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

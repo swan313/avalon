@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+</head>
+<body>
+<form ms-controller="attr">
+    <h2>布尔属性绑定(ms-attr-disabled,ms-attr-readonly)</h2>
+    <label>姓名</label>
+    <input type="text" ms-duplex="textModel" ms-attr-disabled="t1"/>
+    <label>年龄</label>
+    <input type="text" ms-duplex="age" ms-attr-readonly="r1"/>
+    <div>
+        <label><input type="radio" ms-duplex-string="sex" value="男"/>男</label>
+        <label><input type="radio" ms-duplex-string="sex" value="女"/>女</label>
+    </div>
+    <label>工作</label>
+    <select>
+        <option value="IT">IT</option>
+        <option value="销售" ms-attr-selected="s1">销售</option>
+        <option value="产品">产品</option>
+    </select>
+    <br/>
+    <label>兴趣爱好</label>
+    <label><input type="checkbox" ms-attr-checked="c1" value="option1"/>篮球</label>
+    <label><input type="checkbox" ms-attr-checked="c1" value="option2"/>足球</label>
+    <label><input type="checkbox" value="option3"/>羽毛球</label>
+
+    <h2>字符串属性绑定(ms-attr-id,ms-attr-name,ms-attr-title,ms-src,ms-href,ms-attr-data-url)</h2>
+    <a ms-attr-href="{{ path }}" ms-attr-data-url="www/baidu.com">酒店首页</a>
+    <a ms-attr-id="{{ id }}" ms-attr-name="{{ name }}" ms-attr-href="{{ path }}/city/...">重庆酒店</a>
+    <img ms-attr-src="{{ src }}" ms-attr-title="{{ title }}"/>
+</form>
+
+<script src="js/avalon.js"></script>
+<script>
+    avalon.ready(function(){
+        avalon.define({
+            $id: 'attr',
+            textModel: 'star',
+            t1: true,
+            age: 20,
+            r1: true,
+            sex: '女',
+            s1: true,
+            c1: true,
+            path: 'http://www.baidu.com',
+            id: 'a01_chongqing',
+            name: 'a01_chongqing',
+            src: '',
+            title: 'avalon is great'
+        });
+
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

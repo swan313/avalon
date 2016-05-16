@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            border:1px solid red;
+            color:red;
+        }
+        .aaa{
+            color:blue;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body ms-controller="ms-class">
+<div class="test" ms-class="aaa:toggle" ms-click="click">点我</div>
+<br/>
+<div ms-class="aaa" ms-class-1="bbb" ms-class-2="ccc">
+    它的类名是aaa bbb ccc
+</div>
+<div ms-class-2="aaa" ms-class="bbb" ms-class-1="ccc">
+    它的类名是bbb ccc aaa
+</div>
+<div ms-class="bbb" ms-class-1="aaa" ms-class-2="ccc">
+    它的类名是bbb aaa ccc
+</div>
+<div ms-class="xxx yyy zzz">
+    它的类名是 xxx yyy zzz
+</div>
+<div ms-class="xxx yyy zzz:true">
+    它的类名是xxx yyy zzz
+</div>
+
+
+
+<script src="js/avalon.js"></script>
+<script>
+    avalon.ready(function(){
+        var model = avalon.define({
+            $id: 'ms-class',
+            toggle: true,
+            click: function(e){
+                model.toggle = !model.toggle;
+            }
+        });
+
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ms-controller="test">
+<div>
+    <input type="text" ms-duplex="username" ms-data-duplex-observe="false"/>
+    <input type="password" ms-duplex="password2"/>
+    <textarea ms-duplex="profile"></textarea>
+</div>
+<div>
+</div>
+<ul>
+    <li>{{ username }}</li>
+    <li>{{ password2 }}</li>
+    <li>{{ profile }}</li>
+
+</ul>
+
+
+<script src="js/avalon.js"></script>
+<script>
+    //有点错误
+    //ms-data-duplex-observe='false'
+    //可以在元素节点上定义data-duplex-observe='fasle',来禁止双向同步
+    
+
+    avalon.ready(function(){
+        avalon.define({
+            $id: 'test',
+            username: 'felixlu',
+            password2: 'aaa',
+            profile: 'test string'
+        });
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

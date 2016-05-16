@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+</head>
+<body ms-controller="test">
+
+<fieldset>
+    <legend>有关事件回调传参</legend>
+    <div ms-mouseenter="callback" ms-mouseleave="callback">
+        {{ status }}<br/>
+        <input ms-on-input="check"/>{{ field }}
+    </div>
+</fieldset>
+
+<script src="js/avalon.js"></script>
+<script>
+    avalon.ready(function(){
+        var model = avalon.define({
+            $id: 'test',
+            status: 'event-type',
+            callback: function(e){
+                model.status = e.type;
+            },
+            field: 'value-event-type',
+            check: function(e){
+                model.field = this.value + ' ' + e.type;
+            }
+        });
+
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

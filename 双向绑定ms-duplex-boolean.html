@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ms-controller="test">
+<div>
+    <input type="radio" name="op" value="true" ms-duplex-boolean="onlinePayment"/>是
+    <input type="radio" name="op" value="false" ms-duplex-boolean="onlinePayment"/>否
+</div>
+<div>
+</div>
+<ul>
+    <li>{{ onlinePayment }}</li>
+
+</ul>
+
+
+<script src="js/avalon.js"></script>
+<script>
+    //ms-duplex-boolean="prop"
+    //只能用于radio，要求prop为一个布尔，并且元素的value为true或false，当我们选中某一个radio时，avalon就会将些元素的value转换为布尔，赋给以对应的prop
+
+
+    avalon.ready(function(){
+        avalon.define({
+            $id: 'test',
+            onlinePayment: false
+        });
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

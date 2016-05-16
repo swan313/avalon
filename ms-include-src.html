@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{width:200px;height:50px;background:#ccc;}
+    </style>
+</head>
+<body>
+<div ms-controller="test">
+    <select ms-duplex="url">
+        <option>tpl-1</option>
+        <option>tpl-2</option>
+    </select>
+    <div ms-include-src="'tpl-1.html'"></div>
+</div>
+
+<script src="js/avalon.js"></script>
+<script>
+    avalon.ready(function(){
+        var model = avalon.define({
+            $id: 'test',
+            url: 'tpl-1'
+        });
+
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

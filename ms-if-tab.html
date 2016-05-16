@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div div{width:260px;height:100px;}
+        div.d1{background:red;}
+        div.d2{background:green;}
+        div.d3{background:blue;}
+    </style>
+</head>
+<body>
+<body ms-controller="test">
+<div ms-visible="isShowBox">
+    <button ms-click="toggle(1)">色块【red】</button>
+    <button ms-click="toggle(2)">色块【green】</button>
+    <button ms-click="toggle(3)">色块【blue】</button>
+    <div class="d1" ms-if="currentIndex===1"></div>
+    <div class="d2" ms-if="currentIndex===2"></div>
+    <div class="d3" ms-if="currentIndex===3"></div>
+</div>
+
+<script src="js/avalon.js"></script>
+<script>
+    avalon.ready(function(){
+        var vmodel = avalon.define({
+            $id: 'test',
+            currentIndex: 1,
+            isShowBox: true,
+            toggle: function(index){
+                vmodel.currentIndex = index;
+            }
+        });
+
+
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

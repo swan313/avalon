@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ms-controller="test">
+<div>
+    <input type="text" ms-duplex="username"/>
+    <input type="password" ms-duplex="password"/>
+    <textarea ms-duplex="profile"></textarea>
+    <input type="radio" ms-duplex="isSure"/>
+    <br/>
+    <input type="checkbox" ms-duplex="hobbies" value="football"/>足球
+    <input type="checkbox" ms-duplex="hobbies" value="basketball"/>篮球
+    <input type="checkbox" ms-duplex="hobbies" value="baseball"/>棒球
+    <br/>
+    <select ms-duplex="flight">
+        <option value="北京-天津">北京-天津</option>
+        <option value="北京-成都">北京-成都</option>
+        <option value="北京-上海">北京-上海</option>
+    </select>
+    <!-- 可多选 -->
+    <select multiple="true" ms-duplex="hotel">
+        <option value="北京-天津">北京-天津</option>
+        <option value="北京-成都">北京-成都</option>
+        <option value="北京-上海">北京-上海</option>
+    </select>
+</div>
+<ul>
+    <li>{{ username }}</li>
+    <li>{{ password }}</li>
+    <li>{{ profile }}</li>
+    <li>{{ isSure }}</li>
+    <li>{{ hobbies }}</li>
+    <li>{{ flight }}</li>
+    <li>{{ hotel }}</li>
+
+</ul>
+
+
+<script src="js/avalon.js"></script>
+<script>
+    //双向数据绑定ms-duplex='prop',当元素为text,password,textarea时，要求
+    //prop为一个字符串，当改动它的内容时，avalon就会将此元素的avlue值赋给prop
+
+    avalon.ready(function(){
+        avalon.define({
+            $id: 'test',
+            username: 'felixlu',
+            password: 'abc123',
+            profile: 'test string',
+            isSure: true,
+            hobbies: [],
+            flight: '',
+            hotel: []
+        });
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

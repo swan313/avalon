@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ms-controller="test">
+<div>
+    <input type="radio" value="male" ms-duplex-text="gender"/>男
+    <input type="radio" value="female" ms-duplex-text="gender"/>女
+</div>
+<div>
+</div>
+<ul>
+    <li>性别：{{ gender }}</li>
+
+</ul>
+
+
+<script src="js/avalon.js"></script>
+<script>
+    //ms-duplex-text="prop"
+    //只能用于radio，用于模拟text控件的行为，要求prop为一个字符串，当我们选中某一个radio时，avalon就会将些元素的value值赋给prop用于实现多选一
+
+    avalon.ready(function(){
+        avalon.define({
+            $id: 'test',
+            gender: 'female'
+        });
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+</head>
+<body>
+<div ms-controller="test">
+    <script type="avalon" id="tpl">
+        here,{{ 3+6*5 }}
+    </script>
+        <script type="avalon" id="lala">
+        <strong>{{ name }}</strong>
+    </script>
+        <script type="avalon" id="hehe">
+        <strong>{{ content }}</strong>
+    </script>
+
+
+    <p>
+        <button ms-click="change">切换子模板</button>
+    </p>
+    <div ms-include="'tpl'"></div>
+    <div ms-include="eee"></div>
+</div>
+
+
+
+
+
+
+<script src="js/avalon.js"></script>
+<script>
+    avalon.ready(function(){
+        var model = avalon.define({
+            $id: 'test',
+            name: 'avalon',
+            eee: 'lala',
+            content: "引入内部模板",
+            change: function(){
+                model.eee = model.eee === 'lala' ? 'hehe' : 'lala';
+            }
+        });
+
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

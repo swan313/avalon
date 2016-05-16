@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .sidebar-left{
+            width: 800px;
+            float: left;
+        }
+
+        *{margin:0;padding:0;list-style:none;}
+        html{background-color:#E3E3E3; font-size:14px; color:#000; font-family:'微软雅黑'}
+        h2{line-height:30px; font-size:20px;}
+        a,a:hover{ text-decoration:none;}
+        pre{font-family:'微软雅黑'}
+        .box{width:970px; padding:10px 20px; background-color:#fff; margin:10px auto;}
+        .box a{padding-right:20px;}
+        .demo1,.demo2,.demo3,.demo4,.demo5,.demo6{margin:25px 0;}
+        h3{margin:10px 0;}
+        .layinput{height: 22px;line-height: 22px;width: 150px;margin: 0;}
+    </style>
+</head>
+<body ms-controller="test">
+    <div style="width:200px;height:300px;background:red;float:left;"></div>
+    <div class="sidebar-left" ms-include-src="'model/model-1.html'"></div>
+
+    <script src="js/laydate/laydate.js"></script>
+
+    <!--<script src="js/avalon.min.js"></script>-->
+    <script src="js/avalon.shim.js"></script>
+<script>
+    avalon.ready(function(){
+        var model = avalon.define({
+            $id: 'test'
+        });
+
+        avalon.scan();
+    });
+</script>
+</body>
+</html>

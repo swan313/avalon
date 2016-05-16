@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        td{
+            padding: 0 20px;
+            border: 1px solid #666;
+        }
+    </style>
+</head>
+<body ms-controller="test">
+<div>
+    <h3>ms-duplex 2.0</h3>
+    <table>
+        <tr>
+            <td>
+                <p>ms-duplex-checked<input ms-duplex-checked="a" type="radio" />{{ a }}->{{ typeof a }}</p>
+                <p>ms-duplex-checked<input ms-duplex-checked="b" type="checkbox" />{{ b }}->{{ typeof b }}</p>
+                <p>ms-duplex-string<input ms-duplex="c" />{{ c }}->{{ typeof c }}</p>
+                <p>ms-duplex-string<input ms-duplex-string="d" />{{ d }}->{{ typeof d }}</p>
+                <p>ms-duplex-number<input ms-duplex-number="e" />{{ e }}->{{ typeof e }}</p>
+                <p>ms-duplex-boolean<input ms-duplex-boolean="f" />{{ f }}->{{ typeof f }}</p>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <p>ms-duplex-string
+                    <input ms-duplex-string="g" type="checkbox" value="a"/>
+                    <input ms-duplex-string="g" type="checkbox" value="b"/>
+                    <input ms-duplex-string="g" type="checkbox" value="c"/>
+                    <input ms-duplex-string="g" type="checkbox" value="d"/>
+                    {{ g }}->{{ typeof g }}
+
+                </p>
+                <p>ms-duplex-number
+                    <input ms-duplex-number="h" type="checkbox" value="1"/>
+                    <input ms-duplex-number="h" type="checkbox" value="2"/>
+                    <input ms-duplex-number="h" type="checkbox" value="3"/>
+                    <input ms-duplex-number="h" type="checkbox" value="4"/>
+                    {{ h }}->{{ typeof h }}
+
+                </p>
+                <p>ms-duplex-boolean
+                    <input ms-duplex-boolean="i" type="checkbox" value="false"/>
+                    <input ms-duplex-boolean="i" type="checkbox" value="true"/>
+                    {{ i }}->{{ typeof i }}
+                </p>
+                <p>ms-duplex-string/ms-duplex
+                    <select ms-duplex="j">
+                        <option value="aa">111</option>
+                        <option value="bb">222</option>
+                        <option value="cc">333</option>
+                    </select>
+                    {{ j }}
+                </p>
+                <p>ms-duplex-number
+                    <select ms-duplex="k">
+                        <option>111</option>
+                        <option>222</option>
+                        <option>333</option>
+                    </select>
+                    {{ k }}
+                </p>
+                <p>ms-duplex-boolean
+                    <select ms-duplex-boolean="l">
+                        <option>true</option>
+                        <option>false</option>
+                    </select>
+                    {{ l }}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>ms-duplex-string/ms-duplex
+                    <select ms-duplex="m" multiple>
+                        <option>aaaa</option>
+                        <option>bbbb</option>
+                        <option>cccc</option>
+                        <option>dddd</option>
+                    </select>
+                    {{ m }}
+                </p>
+                <p>ms-duplex-number
+                    <select ms-duplex-number="n" multiple>
+                        <option>11</option>
+                        <option>22</option>
+                        <option>33</option>
+                        <option>44</option>
+                    </select>
+                    {{ n }}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>ms-data-duplex-observe</p>
+                <p>data-duplex-focus</p>
+                <input ms-duplex="o" ms-data-duplex-observe="false" data-duplex-focus="true" type="text"/>
+                {{ o }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>data-duplex-changed</p>
+                <input ms-duplex="p" data-duplex-changed="changedCallback" type="text"/>
+            </td>
+            {{ p }}
+        </tr>
+        <tr>
+            <td>
+                <p>data-duplex-event</p>
+                <input ms-duplex="q" data-duplex-event="blur" type="text"/>
+                {{ q }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script src="js/avalon.js"></script>
+<script>
+    /*
+    * ms-duplex-string/ms-duplex:应用于所有表单元素，通过value属性同步VM
+    * ms-duplex-number:应用于表单元素，如果value是数字格式就转换为数值，否则不做转换，然后再同步VM
+    * ms-duplex-boolean:应用于所有表单元素，value为'true'时转为true,其他值转为false同步vm
+    * ms-duplex-checked:只能应用于radio/checkbox,通过checked属性同步vm
+    * ms-data-duplex-observe:可以暂停数据的同步
+    * data-duplex-changed:当监听的值发生变化时触发一个回调
+    * data-duplex-focus:设置焦点，让光标位于value的最后
+    * data-duplex-event:为元素绑定事件，支持blur,keyup
+    *
+    *
+    *
+    * */
+    avalon.ready(function(){
+        avalon.define({
+            $id: 'test',
+            a: true,
+            b: true,
+            c: '',
+
+            d: '',
+            e: 10,
+            f: true,
+            g: ['b','c'],
+            h: [1,4],
+            i: [false],
+            j: 'cc',
+            k: 222,
+            l: false,
+            m: ['bbbb','dddd'],
+            n: [11,44],
+            o: 111,
+            p: '',
+            q: '',
+            changedCallback: function(value,data){
+                console.log('value',value);
+                console.log('data',data);
+            }
+        });
+
+        avalon.scan();
+    });
+</script>
+</body>
+</html>
